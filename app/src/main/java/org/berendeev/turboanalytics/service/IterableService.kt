@@ -1,9 +1,9 @@
-package org.berendeev.turboanalytics.sdk
+package org.berendeev.turboanalytics.service
 
-import org.berendeev.turboanalytics.sdk.event.AnalyticsEvent.Iterable
-import org.berendeev.turboanalytics.SdkSender
+import org.berendeev.turboanalytics.service.event.AnalyticsEvent.Iterable
+import org.berendeev.turboanalytics.AnalyticsService
 
-class IterableSender : SdkSender<Iterable> {
+class IterableSender : AnalyticsService<Iterable> {
     override fun send(event: Iterable) {
         when (event) {
             is Iterable.FirebaseMessage -> {/*IterableFirebaseMessagingService.handleMessageReceived(context, event.remoteMessage)*/}

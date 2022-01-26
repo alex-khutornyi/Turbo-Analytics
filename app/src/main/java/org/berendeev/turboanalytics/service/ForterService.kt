@@ -1,9 +1,9 @@
-package org.berendeev.turboanalytics.sdk
+package org.berendeev.turboanalytics.service
 
-import org.berendeev.turboanalytics.sdk.event.AnalyticsEvent
-import org.berendeev.turboanalytics.SdkSender
+import org.berendeev.turboanalytics.service.event.AnalyticsEvent
+import org.berendeev.turboanalytics.AnalyticsService
 
-class ForterSender : SdkSender<AnalyticsEvent.Forter> {
+class ForterSender : AnalyticsService<AnalyticsEvent.Forter> {
 
     override fun send(event: AnalyticsEvent.Forter) {
         when (event) {

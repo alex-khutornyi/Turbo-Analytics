@@ -1,9 +1,9 @@
-package org.berendeev.turboanalytics.sdk.event
+package org.berendeev.turboanalytics.service.event
 
 import android.location.Location
 import com.kochava.base.Tracker
-import org.berendeev.turboanalytics.sdk.ForterTrackType
-import org.berendeev.turboanalytics.sdk.RemoteMessage
+import org.berendeev.turboanalytics.service.ForterTrackType
+import org.berendeev.turboanalytics.service.RemoteMessage
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)

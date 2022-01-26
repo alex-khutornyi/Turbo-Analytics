@@ -9,12 +9,12 @@ import com.kochava.base.Tracker
 import org.berendeev.turboanalytics.AnalyticsReporter
 import org.berendeev.turboanalytics.AnalyticsReporterImpl
 import org.berendeev.turboanalytics.databinding.ActivityMainBinding
-import org.berendeev.turboanalytics.sdk.ForterSender
-import org.berendeev.turboanalytics.sdk.IterableSender
-import org.berendeev.turboanalytics.sdk.KochavaSender
-import org.berendeev.turboanalytics.sdk.event.AnalyticsEvent
-import org.berendeev.turboanalytics.sdk.event.EventName
-import org.berendeev.turboanalytics.sdk.event.EventProperty
+import org.berendeev.turboanalytics.service.ForterSender
+import org.berendeev.turboanalytics.service.IterableSender
+import org.berendeev.turboanalytics.service.KochavaService
+import org.berendeev.turboanalytics.service.event.AnalyticsEvent
+import org.berendeev.turboanalytics.service.event.EventName
+import org.berendeev.turboanalytics.service.event.EventProperty
 import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val analyticsReporter: AnalyticsReporter = AnalyticsReporterImpl(
-        KochavaSender(),
+        KochavaService(),
         IterableSender(),
         ForterSender(),
     )

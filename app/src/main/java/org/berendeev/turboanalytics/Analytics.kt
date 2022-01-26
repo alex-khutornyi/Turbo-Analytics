@@ -1,12 +1,12 @@
 package org.berendeev.turboanalytics
 
-import org.berendeev.turboanalytics.sdk.event.AnalyticsEvent
+import org.berendeev.turboanalytics.service.event.AnalyticsEvent
 
 interface AnalyticsReporter {
     fun send(event: AnalyticsEvent)
 }
 
-interface SdkSender <in T : AnalyticsEvent> {
+internal interface AnalyticsService <in T : AnalyticsEvent> {
     fun send(event: T)
 }
 

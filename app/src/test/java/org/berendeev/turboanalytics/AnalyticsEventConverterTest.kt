@@ -1,8 +1,8 @@
 package org.berendeev.turboanalytics
 
-import org.berendeev.turboanalytics.sdk.event.AnalyticsEvent
-import org.berendeev.turboanalytics.sdk.event.AnalyticsEventConverter
-import org.berendeev.turboanalytics.sdk.event.EventProperty
+import org.berendeev.turboanalytics.service.event.AnalyticsEvent
+import org.berendeev.turboanalytics.service.event.AnalyticsEventConverter
+import org.berendeev.turboanalytics.service.event.EventProperty
 import org.junit.Assert.*
 import org.junit.Test
 
