@@ -1,13 +1,16 @@
-package org.berendeev.turboanalytics
+package org.berendeev.turboanalytics.sdk
 
 import com.kochava.base.Tracker
-import org.berendeev.turboanalytics.AnalyticsEvent.Kochava
+import org.berendeev.turboanalytics.sdk.event.AnalyticsEvent.Kochava
+import org.berendeev.turboanalytics.sdk.event.EventName
+import org.berendeev.turboanalytics.sdk.event.EventProperty
+import org.berendeev.turboanalytics.SdkSender
 import timber.log.Timber
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.hasAnnotation
 import kotlin.reflect.full.memberProperties
 
-class KochavaSender : Sender<Kochava> {
+class KochavaSender : SdkSender<Kochava> {
 
     override fun send(event: Kochava) {
         Timber.e( "send: $event")

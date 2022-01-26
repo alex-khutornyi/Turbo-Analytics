@@ -1,6 +1,9 @@
-package org.berendeev.turboanalytics
+package org.berendeev.turboanalytics.sdk
 
-class ForterSender : Sender<AnalyticsEvent.Forter>{
+import org.berendeev.turboanalytics.sdk.event.AnalyticsEvent
+import org.berendeev.turboanalytics.SdkSender
+
+class ForterSender : SdkSender<AnalyticsEvent.Forter> {
 
     override fun send(event: AnalyticsEvent.Forter) {
         when (event) {
@@ -17,7 +20,8 @@ class ForterSender : Sender<AnalyticsEvent.Forter>{
 //                ForterSDK.getInstance().onLocationChanged(event.location)
             }
             is AnalyticsEvent.Forter.CustomEvent -> {
-//            ForterSDK.getInstance()
+//            1. convert with CustomEventConverter
+//            2. ForterSDK.getInstance()
 //                .trackAction(event.type, event.data)
             }
         }
@@ -27,4 +31,4 @@ class ForterSender : Sender<AnalyticsEvent.Forter>{
 /**
  * It's supposed to be com.forter.mobile.fortersdk.models.TrackType
  */
-class ForterTrackType
+class ForterTrackType(val id: String)
