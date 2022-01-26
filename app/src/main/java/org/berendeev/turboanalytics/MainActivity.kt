@@ -1,5 +1,6 @@
 package org.berendeev.turboanalytics
 
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +14,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val analyticsReporter: AnalyticsReporter = AnalyticsReporterImpl(
-        FirebaseSender(),
         KochavaSender(),
+        IterableSender(),
+        ForterSender(),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
             analyticsReporter.send(DeepLinkEvent("some URI".toUri()))
             analyticsReporter.send(getFloatButtonClickedEvent())
+            analyticsReporter.send(AnalyticsEvent.Forter.LocationEvent(Location("Victoria, BC")))
         }
     }
 

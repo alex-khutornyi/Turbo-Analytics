@@ -1,7 +1,7 @@
 package org.berendeev.turboanalytics
 
+import android.location.Location
 import com.kochava.base.Tracker
-import org.berendeev.turboanalytics.AnalyticsEvent.Kochava.CustomEvent
 
 @Target(AnnotationTarget.PROPERTY)
 @Retention(AnnotationRetention.RUNTIME)
@@ -64,6 +64,31 @@ sealed class AnalyticsEvent {
          *
          */
         open class CustomEvent : Iterable()
+    }
+
+    /**
+     * Use
+     */
+    sealed class Forter : AnalyticsEvent() {
+
+        class SimpleEvent(val type: ForterTrackType) : Forter()
+
+        class TypedDataEvent(val type: ForterTrackType, val data: String) : Forter()
+
+        class LocationEvent(val location: Location) : Forter()
+
+        /**
+         * to send custom Kochava events with custom fields.
+         *
+         * Inherit from [CustomEvent] to create a specific Custom Event.
+         *
+         * [EventName] class annotation should be used for Event Name.
+         *
+         * [EventProperty] field annotation should be used for Event Properties
+         *
+         */
+        open class CustomEvent : Forter()
+
     }
 }
 
