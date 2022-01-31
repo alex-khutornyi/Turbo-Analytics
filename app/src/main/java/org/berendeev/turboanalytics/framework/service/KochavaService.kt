@@ -1,10 +1,9 @@
-package org.berendeev.turboanalytics.service
+package org.berendeev.turboanalytics.framework.service
 
 import com.kochava.base.Tracker
-import org.berendeev.turboanalytics.service.event.AnalyticsReport.Kochava
-import org.berendeev.turboanalytics.service.event.ReportName
-import org.berendeev.turboanalytics.service.event.ReportProperty
-import org.berendeev.turboanalytics.AnalyticsService
+import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport.Kochava
+import org.berendeev.turboanalytics.framework.service.report.ReportName
+import org.berendeev.turboanalytics.framework.service.report.ReportProperty
 import timber.log.Timber
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.hasAnnotation

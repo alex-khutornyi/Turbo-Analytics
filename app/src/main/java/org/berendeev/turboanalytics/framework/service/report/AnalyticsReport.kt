@@ -1,8 +1,8 @@
-package org.berendeev.turboanalytics.service.event
+package org.berendeev.turboanalytics.framework.service.report
 
 import com.kochava.base.Tracker
-import org.berendeev.turboanalytics.service.ForterTrackType
-import org.berendeev.turboanalytics.service.RemoteMessage
+import org.berendeev.turboanalytics.framework.service.ForterTrackType
+import org.berendeev.turboanalytics.framework.service.RemoteMessage
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)

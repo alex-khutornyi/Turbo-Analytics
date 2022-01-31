@@ -1,11 +1,12 @@
-package org.berendeev.turboanalytics
+package org.berendeev.turboanalytics.framework
 
-import org.berendeev.turboanalytics.service.ForterService
-import org.berendeev.turboanalytics.service.IterableService
-import org.berendeev.turboanalytics.service.KochavaService
-import org.berendeev.turboanalytics.service.event.AnalyticsReport
+import org.berendeev.turboanalytics.framework.service.AnalyticsService
+import org.berendeev.turboanalytics.framework.service.ForterService
+import org.berendeev.turboanalytics.framework.service.IterableService
+import org.berendeev.turboanalytics.framework.service.KochavaService
+import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport
 
-class AnalyticsReporterImpl(
+internal class AnalyticsReporterImpl(
     private val kochavaService: KochavaService,
     private val iterableService: IterableService,
     private val forterService: ForterService,

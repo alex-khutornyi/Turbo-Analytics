@@ -1,7 +1,6 @@
-package org.berendeev.turboanalytics.service
+package org.berendeev.turboanalytics.framework.service
 
-import org.berendeev.turboanalytics.service.event.AnalyticsReport
-import org.berendeev.turboanalytics.AnalyticsService
+import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport
 
 class ForterService : AnalyticsService<AnalyticsReport.Forter> {
 

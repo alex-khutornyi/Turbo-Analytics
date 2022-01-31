@@ -6,15 +6,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.kochava.base.Tracker
-import org.berendeev.turboanalytics.AnalyticsReporter
-import org.berendeev.turboanalytics.AnalyticsReporterImpl
+import org.berendeev.turboanalytics.framework.AnalyticsReporter
+import org.berendeev.turboanalytics.framework.AnalyticsReporterImpl
 import org.berendeev.turboanalytics.databinding.ActivityMainBinding
-import org.berendeev.turboanalytics.service.ForterService
-import org.berendeev.turboanalytics.service.IterableService
-import org.berendeev.turboanalytics.service.KochavaService
-import org.berendeev.turboanalytics.service.event.AnalyticsReport
-import org.berendeev.turboanalytics.service.event.ReportName
-import org.berendeev.turboanalytics.service.event.ReportProperty
+import org.berendeev.turboanalytics.framework.service.ForterService
+import org.berendeev.turboanalytics.framework.service.IterableService
+import org.berendeev.turboanalytics.framework.service.KochavaService
+import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport
+import org.berendeev.turboanalytics.framework.service.report.ReportName
+import org.berendeev.turboanalytics.framework.service.report.ReportProperty
 import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {

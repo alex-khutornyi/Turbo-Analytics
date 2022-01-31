@@ -1,7 +1,6 @@
-package org.berendeev.turboanalytics.service
+package org.berendeev.turboanalytics.framework.service
 
-import org.berendeev.turboanalytics.service.event.AnalyticsReport.Iterable
-import org.berendeev.turboanalytics.AnalyticsService
+import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport.Iterable
 
 class IterableService : AnalyticsService<Iterable> {
     override fun send(event: Iterable) {

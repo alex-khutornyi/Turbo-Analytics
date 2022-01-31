@@ -1,8 +1,8 @@
 package org.berendeev.turboanalytics
 
-import org.berendeev.turboanalytics.service.event.AnalyticsReport
-import org.berendeev.turboanalytics.service.event.AnalyticsEventConverter
-import org.berendeev.turboanalytics.service.event.ReportProperty
+import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport
+import org.berendeev.turboanalytics.framework.service.report.AnalyticsEventConverter
+import org.berendeev.turboanalytics.framework.service.report.ReportProperty
 import org.junit.Assert.*
 import org.junit.Test
 

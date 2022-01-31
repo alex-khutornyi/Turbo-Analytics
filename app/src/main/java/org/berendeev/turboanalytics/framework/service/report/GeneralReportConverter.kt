@@ -1,4 +1,4 @@
-package org.berendeev.turboanalytics.service.event
+package org.berendeev.turboanalytics.framework.service.report
 
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty1
