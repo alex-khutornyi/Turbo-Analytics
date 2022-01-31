@@ -4,13 +4,23 @@ import com.kochava.base.Tracker
 import org.berendeev.turboanalytics.framework.service.ForterTrackType
 import org.berendeev.turboanalytics.framework.service.RemoteMessage
 
-@Target(AnnotationTarget.CLASS)
-@Retention(AnnotationRetention.RUNTIME)
-public annotation class ReportName(val name: String)
+/**
+ * to send a General Report with a set of properties.
+ *
+ * [Name] class annotation should be used for Report Name.
+ *
+ * [Property] field annotation should be used for Report Properties
+ *
+ */
+public interface GeneralReport {
+    @Target(AnnotationTarget.CLASS)
+    @Retention(AnnotationRetention.RUNTIME)
+    public annotation class Name(val name: String)
 
-@Target(AnnotationTarget.PROPERTY)
-@Retention(AnnotationRetention.RUNTIME)
-public annotation class ReportProperty(val key: String)
+    @Target(AnnotationTarget.PROPERTY)
+    @Retention(AnnotationRetention.RUNTIME)
+    public annotation class Property(val key: String)
+}
 
 public sealed class AnalyticsReport {
     /**
@@ -26,16 +36,12 @@ public sealed class AnalyticsReport {
         public open class Standard(val trackerEvent: Tracker.Event): Kochava()
 
         /**
-         * to send custom Kochava events with custom fields.
+         * to send a Kochava [GeneralReport] with a set of properties
          *
-         * Inherit from [General] to create a specific Custom Event.
-         *
-         * [ReportName] class annotation should be used for Event Name.
-         *
-         * [ReportProperty] field annotation should be used for Event Properties
+         * Inherit from [General] to create a specific [GeneralReport].
          *
          */
-        public open class General: Kochava()
+        public open class General: Kochava(), GeneralReport
     }
 
     /**
@@ -55,16 +61,12 @@ public sealed class AnalyticsReport {
 
 
         /**
-         * to send custom Kochava events with custom fields.
+         * to send a Iterable [GeneralReport] with a set of properties
          *
-         * Inherit from [General] to create a specific Custom Event.
-         *
-         * [ReportName] class annotation should be used for Event Name.
-         *
-         * [ReportProperty] field annotation should be used for Event Properties
+         * Inherit from [General] to create a specific [GeneralReport].
          *
          */
-        public open class General : Iterable()
+        public open class General : Iterable(), GeneralReport
     }
 
     /**
@@ -79,20 +81,17 @@ public sealed class AnalyticsReport {
         public class Location(val location: android.location.Location) : Forter()
 
         /**
-         * to send custom Kochava events with custom fields.
+         * to send a Forter [GeneralReport] with a set of properties
          *
-         * Inherit from [General] to create a specific Custom Event.
-         *
-         * [ReportName] class annotation should be used for Event Name.
-         *
-         * [ReportProperty] field annotation should be used for Event Properties
+         * Inherit from [General] to create a specific [GeneralReport].
          *
          */
-        public open class General : Forter()
+        public open class General : Forter(), GeneralReport
 
     }
 }
 
+//The class below is for demo purpose
 data class GeneralReportStructure(
     val eventName: String,
     val data: Map<String, Any>

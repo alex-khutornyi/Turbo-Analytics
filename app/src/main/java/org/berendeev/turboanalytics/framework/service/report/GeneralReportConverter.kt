@@ -1,5 +1,6 @@
 package org.berendeev.turboanalytics.framework.service.report
 
+import org.berendeev.turboanalytics.framework.service.report.GeneralReport.Property
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.findAnnotation
@@ -31,7 +32,7 @@ class AnalyticsEventConverter {
         property: KProperty1<Any, *>,
         dataObject: Any
     ): Pair<String, Any?> {
-        val eventPropertyKey = property.findAnnotation<ReportProperty>()?.key
+        val eventPropertyKey = property.findAnnotation<Property>()?.key
             ?: throw IllegalStateException("Event property not found")
 
         val eventPropertyValue = mapEventPropertyValue(property, dataObject)
@@ -53,5 +54,5 @@ class AnalyticsEventConverter {
 }
 
 private fun KProperty1<Any, *>.hasEventPropertyAnnotation(): Boolean {
-    return this.findAnnotation<ReportProperty>() != null
+    return this.findAnnotation<Property>() != null
 }
