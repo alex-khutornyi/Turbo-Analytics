@@ -3,6 +3,7 @@ package org.berendeev.turboanalytics.framework.service.report
 import com.kochava.base.Tracker
 import org.berendeev.turboanalytics.framework.service.ForterTrackType
 import org.berendeev.turboanalytics.framework.service.RemoteMessage
+import java.time.LocalDateTime
 
 /**
  * to send a General Report with a set of properties.
@@ -20,6 +21,8 @@ public interface GeneralReport {
     @Target(AnnotationTarget.PROPERTY)
     @Retention(AnnotationRetention.RUNTIME)
     public annotation class Property(val key: String)
+
+    public var createdAt: LocalDateTime
 }
 
 public sealed class AnalyticsReport {
@@ -41,7 +44,9 @@ public sealed class AnalyticsReport {
          * Inherit from [General] to create a specific [GeneralReport].
          *
          */
-        public open class General: Kochava(), GeneralReport
+        public open class General(
+            override var createdAt: LocalDateTime = LocalDateTime.now(),
+        ) : Kochava(), GeneralReport
     }
 
     /**
@@ -66,7 +71,9 @@ public sealed class AnalyticsReport {
          * Inherit from [General] to create a specific [GeneralReport].
          *
          */
-        public open class General : Iterable(), GeneralReport
+        public open class General(
+            override var createdAt: LocalDateTime = LocalDateTime.now(),
+        ) : Iterable(), GeneralReport
     }
 
     /**
@@ -86,7 +93,9 @@ public sealed class AnalyticsReport {
          * Inherit from [General] to create a specific [GeneralReport].
          *
          */
-        public open class General : Forter(), GeneralReport
+        public open class General(
+            override var createdAt: LocalDateTime = LocalDateTime.now(),
+        ) : Forter(), GeneralReport
 
     }
 }

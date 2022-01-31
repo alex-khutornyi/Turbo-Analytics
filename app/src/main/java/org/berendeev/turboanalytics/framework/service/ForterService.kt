@@ -1,8 +1,9 @@
 package org.berendeev.turboanalytics.framework.service
 
 import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport
+import javax.inject.Inject
 
-class ForterService : AnalyticsService<AnalyticsReport.Forter> {
+class ForterService @Inject constructor() : AnalyticsService<AnalyticsReport.Forter> {
 
     override fun send(report: AnalyticsReport.Forter) {
         when (report) {

@@ -1,8 +1,9 @@
 package org.berendeev.turboanalytics.framework.service
 
 import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport.Iterable
+import javax.inject.Inject
 
-class IterableService : AnalyticsService<Iterable> {
+class IterableService @Inject constructor() : AnalyticsService<Iterable> {
     override fun send(event: Iterable) {
         when (event) {
             is Iterable.FirebaseMessage -> {/*IterableFirebaseMessagingService.handleMessageReceived(context, event.remoteMessage)*/}
