@@ -6,11 +6,11 @@ import org.berendeev.turboanalytics.service.RemoteMessage
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-public annotation class EventName(val name: String)
+public annotation class ReportName(val name: String)
 
 @Target(AnnotationTarget.PROPERTY)
 @Retention(AnnotationRetention.RUNTIME)
-public annotation class EventProperty(val key: String)
+public annotation class ReportProperty(val key: String)
 
 public sealed class AnalyticsReport {
     /**
@@ -30,9 +30,9 @@ public sealed class AnalyticsReport {
          *
          * Inherit from [General] to create a specific Custom Event.
          *
-         * [EventName] class annotation should be used for Event Name.
+         * [ReportName] class annotation should be used for Event Name.
          *
-         * [EventProperty] field annotation should be used for Event Properties
+         * [ReportProperty] field annotation should be used for Event Properties
          *
          */
         public open class General: Kochava()
@@ -59,9 +59,9 @@ public sealed class AnalyticsReport {
          *
          * Inherit from [General] to create a specific Custom Event.
          *
-         * [EventName] class annotation should be used for Event Name.
+         * [ReportName] class annotation should be used for Event Name.
          *
-         * [EventProperty] field annotation should be used for Event Properties
+         * [ReportProperty] field annotation should be used for Event Properties
          *
          */
         public open class General : Iterable()
@@ -83,9 +83,9 @@ public sealed class AnalyticsReport {
          *
          * Inherit from [General] to create a specific Custom Event.
          *
-         * [EventName] class annotation should be used for Event Name.
+         * [ReportName] class annotation should be used for Event Name.
          *
-         * [EventProperty] field annotation should be used for Event Properties
+         * [ReportProperty] field annotation should be used for Event Properties
          *
          */
         public open class General : Forter()

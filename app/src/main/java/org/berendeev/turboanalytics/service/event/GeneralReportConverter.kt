@@ -31,7 +31,7 @@ class AnalyticsEventConverter {
         property: KProperty1<Any, *>,
         dataObject: Any
     ): Pair<String, Any?> {
-        val eventPropertyKey = property.findAnnotation<EventProperty>()?.key
+        val eventPropertyKey = property.findAnnotation<ReportProperty>()?.key
             ?: throw IllegalStateException("Event property not found")
 
         val eventPropertyValue = mapEventPropertyValue(property, dataObject)
@@ -53,5 +53,5 @@ class AnalyticsEventConverter {
 }
 
 private fun KProperty1<Any, *>.hasEventPropertyAnnotation(): Boolean {
-    return this.findAnnotation<EventProperty>() != null
+    return this.findAnnotation<ReportProperty>() != null
 }

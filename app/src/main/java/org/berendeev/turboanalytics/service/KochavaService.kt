@@ -2,8 +2,8 @@ package org.berendeev.turboanalytics.service
 
 import com.kochava.base.Tracker
 import org.berendeev.turboanalytics.service.event.AnalyticsReport.Kochava
-import org.berendeev.turboanalytics.service.event.EventName
-import org.berendeev.turboanalytics.service.event.EventProperty
+import org.berendeev.turboanalytics.service.event.ReportName
+import org.berendeev.turboanalytics.service.event.ReportProperty
 import org.berendeev.turboanalytics.AnalyticsService
 import timber.log.Timber
 import kotlin.reflect.full.findAnnotation
@@ -22,16 +22,16 @@ class KochavaService : AnalyticsService<Kochava> {
     }
 
     private fun sendCustomEvent(event: Kochava.General) {
-        val hasEventName = event::class.hasAnnotation<EventName>()
-        val eventName = event::class.findAnnotation<EventName>()?.name
+        val hasEventName = event::class.hasAnnotation<ReportName>()
+        val eventName = event::class.findAnnotation<ReportName>()?.name
         Timber.e( "send: hasEventName=$hasEventName, eventName=$eventName")
 
         if (hasEventName.not()) {
-            Timber.e( "send: EXCEPTION class must have `${EventName::name}` annotation")
+            Timber.e( "send: EXCEPTION class must have `${ReportName::name}` annotation")
         }
 
         for (property in event::class.memberProperties) {
-            val hasEventPropertyAnnotation = property.findAnnotation<EventProperty>() != null
+            val hasEventPropertyAnnotation = property.findAnnotation<ReportProperty>() != null
             val propertyName = property.name
             val propertyType = property.returnType
             val propertyValue = property.getter.call(event)
