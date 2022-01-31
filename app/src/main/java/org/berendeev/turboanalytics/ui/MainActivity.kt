@@ -13,8 +13,8 @@ import org.berendeev.turboanalytics.framework.service.ForterService
 import org.berendeev.turboanalytics.framework.service.IterableService
 import org.berendeev.turboanalytics.framework.service.KochavaService
 import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport
-import org.berendeev.turboanalytics.framework.service.report.ReportName
-import org.berendeev.turboanalytics.framework.service.report.ReportProperty
+import org.berendeev.turboanalytics.framework.service.report.GeneralReport.Name
+import org.berendeev.turboanalytics.framework.service.report.GeneralReport.Property
 import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
@@ -69,21 +69,21 @@ class DeepLink(url: Uri) : AnalyticsReport.Kochava.Standard(
         .setUri(url)
 )
 
-@ReportName("Activity.Created")
+@Name("Activity.Created")
 class ActivityOpenedReport(
-    @ReportProperty("TIME")
+    @Property("TIME")
     val time: Long,
 ) : AnalyticsReport.Kochava.General()
 
-@ReportName("Button.SignUp")
+@Name("Button.SignUp")
 class RentCarButtonClickedReport(
-    @ReportProperty("IS_CONFIRMED")
+    @Property("IS_CONFIRMED")
     val isConfirmed: Boolean,
-    @ReportProperty("NAME_STRING")
+    @Property("NAME_STRING")
     val nameString: String,
-    @ReportProperty("TIME")
+    @Property("TIME")
     val time: Long,
-    @ReportProperty("DATE")
+    @Property("DATE")
     val date: LocalDate,
 ) : AnalyticsReport.Iterable.General()
 
