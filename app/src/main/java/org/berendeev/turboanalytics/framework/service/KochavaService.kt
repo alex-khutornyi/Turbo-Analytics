@@ -5,11 +5,12 @@ import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport.Koc
 import org.berendeev.turboanalytics.framework.service.report.GeneralReport.Name
 import org.berendeev.turboanalytics.framework.service.report.GeneralReport.Property
 import timber.log.Timber
+import javax.inject.Inject
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.hasAnnotation
 import kotlin.reflect.full.memberProperties
 
-class KochavaService : AnalyticsService<Kochava> {
+class KochavaService @Inject constructor() : AnalyticsService<Kochava> {
 
     override fun send(event: Kochava) {
         Timber.e( "send: $event")

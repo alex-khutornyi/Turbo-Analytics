@@ -5,8 +5,9 @@ import org.berendeev.turboanalytics.framework.service.ForterService
 import org.berendeev.turboanalytics.framework.service.IterableService
 import org.berendeev.turboanalytics.framework.service.KochavaService
 import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport
+import javax.inject.Inject
 
-internal class AnalyticsReporterImpl(
+internal class AnalyticsReporterImpl @Inject constructor(
     private val kochavaService: KochavaService,
     private val iterableService: IterableService,
     private val forterService: ForterService,
