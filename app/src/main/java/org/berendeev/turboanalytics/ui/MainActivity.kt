@@ -9,10 +9,10 @@ import com.kochava.base.Tracker
 import org.berendeev.turboanalytics.AnalyticsReporter
 import org.berendeev.turboanalytics.AnalyticsReporterImpl
 import org.berendeev.turboanalytics.databinding.ActivityMainBinding
-import org.berendeev.turboanalytics.service.ForterSender
-import org.berendeev.turboanalytics.service.IterableSender
+import org.berendeev.turboanalytics.service.ForterService
+import org.berendeev.turboanalytics.service.IterableService
 import org.berendeev.turboanalytics.service.KochavaService
-import org.berendeev.turboanalytics.service.event.AnalyticsEvent
+import org.berendeev.turboanalytics.service.event.AnalyticsReport
 import org.berendeev.turboanalytics.service.event.EventName
 import org.berendeev.turboanalytics.service.event.EventProperty
 import java.time.LocalDate
@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     private val analyticsReporter: AnalyticsReporter = AnalyticsReporterImpl(
         KochavaService(),
-        IterableSender(),
-        ForterSender(),
+        IterableService(),
+        ForterService(),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,16 +35,16 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        analyticsReporter.send(ActivityOpenedEvent(System.currentTimeMillis()))
+        analyticsReporter.report(ActivityOpenedReport(System.currentTimeMillis()))
 
         binding.fab.setOnClickListener {
 
-            analyticsReporter.send(AnalyticsEvent.Forter.LocationEvent(Location("Victoria, BC")))
+            analyticsReporter.report(AnalyticsReport.Forter.Location(Location("Victoria, BC")))
 
-            analyticsReporter.send(DeepLinkEvent("some URI".toUri()))
+            analyticsReporter.report(DeepLink("some URI".toUri()))
 
-            analyticsReporter.send(
-                RentCarButtonClickedEvent(
+            analyticsReporter.report(
+                RentCarButtonClickedReport(
                     isConfirmed = true,
                     nameString = "Audi",
                     time = System.currentTimeMillis(),
@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getRentCarButtonClickedEvent(): AnalyticsEvent {
-        return RentCarButtonClickedEvent(
+    private fun getRentCarButtonClickedEvent(): AnalyticsReport {
+        return RentCarButtonClickedReport(
             isConfirmed = true,
             nameString = "Audi",
             time = System.currentTimeMillis(),
@@ -64,19 +64,19 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class DeepLinkEvent(url: Uri) : AnalyticsEvent.Kochava.StandardEvent(
+class DeepLink(url: Uri) : AnalyticsReport.Kochava.Standard(
     Tracker.Event(Tracker.EVENT_TYPE_DEEP_LINK)
         .setUri(url)
 )
 
 @EventName("Activity.Created")
-class ActivityOpenedEvent(
+class ActivityOpenedReport(
     @EventProperty("TIME")
     val time: Long,
-) : AnalyticsEvent.Kochava.CustomEvent()
+) : AnalyticsReport.Kochava.General()
 
 @EventName("Button.SignUp")
-class RentCarButtonClickedEvent(
+class RentCarButtonClickedReport(
     @EventProperty("IS_CONFIRMED")
     val isConfirmed: Boolean,
     @EventProperty("NAME_STRING")
@@ -85,5 +85,5 @@ class RentCarButtonClickedEvent(
     val time: Long,
     @EventProperty("DATE")
     val date: LocalDate,
-) : AnalyticsEvent.Iterable.CustomEvent()
+) : AnalyticsReport.Iterable.General()
 

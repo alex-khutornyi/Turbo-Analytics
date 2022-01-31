@@ -1,12 +1,12 @@
 package org.berendeev.turboanalytics
 
-import org.berendeev.turboanalytics.service.event.AnalyticsEvent
+import org.berendeev.turboanalytics.service.event.AnalyticsReport
 import org.berendeev.turboanalytics.service.event.AnalyticsEventConverter
 import org.berendeev.turboanalytics.service.event.EventProperty
 import org.junit.Assert.*
 import org.junit.Test
 
-class AnalyticsEventConverterTest {
+class AnalyticsReportConverterTest {
     @Test
     fun map_object() {
         class User(
@@ -17,13 +17,13 @@ class AnalyticsEventConverterTest {
             val soname: String,
         )
 
-        class TestEvent(
+        class TestReport(
             @EventProperty(key = KEY)
             var user: User
-        ) : AnalyticsEvent("test_event_name")
+        ) : AnalyticsReport("test_event_name")
 
         val user = User("111", "222")
-        val event = TestEvent(user)
+        val event = TestReport(user)
         val map = AnalyticsEventConverter()
             .convertToMap(event)
 
@@ -36,13 +36,13 @@ class AnalyticsEventConverterTest {
 
     @Test
     fun when_several_properties() {
-        class TestEvent(
+        class TestReport(
             @EventProperty(key = "key1")
             val valInConstructor: String,
 
             @EventProperty(key = "key2")
             var varInConstructor: String
-        ) : AnalyticsEvent("test_event_name") {
+        ) : AnalyticsReport("test_event_name") {
             @EventProperty(key = "key3")
             var valInBody: String = "val3"
 
@@ -50,7 +50,7 @@ class AnalyticsEventConverterTest {
             var varInBody: String = "val4"
         }
 
-        val event = TestEvent("val1", "val2")
+        val event = TestReport("val1", "val2")
         val map = AnalyticsEventConverter()
             .convertToMap(event)
         assertEquals(4, map.keys.size)
@@ -58,12 +58,12 @@ class AnalyticsEventConverterTest {
 
     @Test
     fun map_string() {
-        class TestEvent(
+        class TestReport(
             @EventProperty(key = KEY)
             val userName: String,
-        ) : AnalyticsEvent("test_event_name")
+        ) : AnalyticsReport("test_event_name")
 
-        val event = TestEvent("value")
+        val event = TestReport("value")
         val map = AnalyticsEventConverter()
             .convertToMap(event)
 
@@ -72,12 +72,12 @@ class AnalyticsEventConverterTest {
 
     @Test
     fun map_int() {
-        class TestEvent(
+        class TestReport(
             @EventProperty(key = KEY)
             val userName: String,
-        ) : AnalyticsEvent("test_event_name")
+        ) : AnalyticsReport("test_event_name")
 
-        val event = TestEvent("value")
+        val event = TestReport("value")
         val map = AnalyticsEventConverter()
             .convertToMap(event)
 

@@ -6,8 +6,8 @@ import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.memberProperties
 
 class AnalyticsEventConverter {
-    fun convertToMap(event: AnalyticsEvent): Map<String, Any?> {
-        return mapObjectToMap(event)
+    fun convertToMap(report: AnalyticsReport): Map<String, Any?> {
+        return mapObjectToMap(report)
     }
 
     private fun mapObjectToMap(dataObject: Any): Map<String, Any?> {

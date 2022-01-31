@@ -1,25 +1,25 @@
 package org.berendeev.turboanalytics.service
 
-import org.berendeev.turboanalytics.service.event.AnalyticsEvent
+import org.berendeev.turboanalytics.service.event.AnalyticsReport
 import org.berendeev.turboanalytics.AnalyticsService
 
-class ForterSender : AnalyticsService<AnalyticsEvent.Forter> {
+class ForterService : AnalyticsService<AnalyticsReport.Forter> {
 
-    override fun send(event: AnalyticsEvent.Forter) {
-        when (event) {
-            is AnalyticsEvent.Forter.SimpleEvent -> {
+    override fun send(report: AnalyticsReport.Forter) {
+        when (report) {
+            is AnalyticsReport.Forter.Simple -> {
 //                ForterSDK.getInstance().trackAction(event.type)
             }
 
-            is AnalyticsEvent.Forter.TypedDataEvent -> {
+            is AnalyticsReport.Forter.TypedData -> {
 //            ForterSDK.getInstance()
 //                .trackAction(event.type, event.data)
             }
 
-            is AnalyticsEvent.Forter.LocationEvent -> {
+            is AnalyticsReport.Forter.Location -> {
 //                ForterSDK.getInstance().onLocationChanged(event.location)
             }
-            is AnalyticsEvent.Forter.CustomEvent -> {
+            is AnalyticsReport.Forter.General -> {
 //            1. convert with CustomEventConverter
 //            2. ForterSDK.getInstance()
 //                .trackAction(event.type, event.data)

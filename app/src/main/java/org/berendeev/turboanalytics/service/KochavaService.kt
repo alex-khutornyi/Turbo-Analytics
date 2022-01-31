@@ -1,7 +1,7 @@
 package org.berendeev.turboanalytics.service
 
 import com.kochava.base.Tracker
-import org.berendeev.turboanalytics.service.event.AnalyticsEvent.Kochava
+import org.berendeev.turboanalytics.service.event.AnalyticsReport.Kochava
 import org.berendeev.turboanalytics.service.event.EventName
 import org.berendeev.turboanalytics.service.event.EventProperty
 import org.berendeev.turboanalytics.AnalyticsService
@@ -16,12 +16,12 @@ class KochavaService : AnalyticsService<Kochava> {
         Timber.e( "send: $event")
 
         when (event) {
-            is Kochava.StandardEvent -> Tracker.sendEvent(event.trackerEvent)
-            is Kochava.CustomEvent -> sendCustomEvent(event)
+            is Kochava.Standard -> Tracker.sendEvent(event.trackerEvent)
+            is Kochava.General -> sendCustomEvent(event)
         }
     }
 
-    private fun sendCustomEvent(event: Kochava.CustomEvent) {
+    private fun sendCustomEvent(event: Kochava.General) {
         val hasEventName = event::class.hasAnnotation<EventName>()
         val eventName = event::class.findAnnotation<EventName>()?.name
         Timber.e( "send: hasEventName=$hasEventName, eventName=$eventName")
