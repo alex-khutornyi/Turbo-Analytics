@@ -13,7 +13,7 @@ internal class AnalyticsReporterImpl @Inject constructor(
     private val forterService: ForterService,
 ) : AnalyticsReporter {
 
-    override fun report(report: AnalyticsReport) {
+    override fun send(report: AnalyticsReport) {
         when (report) {
             is AnalyticsReport.Kochava -> kochavaService.send(report)
             is AnalyticsReport.Iterable -> iterableService.send(report)

@@ -4,7 +4,7 @@ import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport
 
 
 public interface AnalyticsReporter {
-    fun report(report: AnalyticsReport)
+    fun send(report: AnalyticsReport)
 }
 
 

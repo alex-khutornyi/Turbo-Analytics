@@ -9,15 +9,10 @@ import androidx.core.net.toUri
 import com.kochava.base.Tracker
 import dagger.hilt.android.AndroidEntryPoint
 import org.berendeev.turboanalytics.framework.AnalyticsReporter
-import org.berendeev.turboanalytics.framework.AnalyticsReporterImpl
 import org.berendeev.turboanalytics.databinding.ActivityMainBinding
-import org.berendeev.turboanalytics.framework.service.ForterService
-import org.berendeev.turboanalytics.framework.service.IterableService
-import org.berendeev.turboanalytics.framework.service.KochavaService
 import org.berendeev.turboanalytics.framework.service.report.AnalyticsReport
 import org.berendeev.turboanalytics.framework.service.report.GeneralReport.Name
 import org.berendeev.turboanalytics.framework.service.report.GeneralReport.Property
-import org.berendeev.turboanalytics.ui.MainAnalyticsReportViewModel.FabButtonClicksReport
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -41,15 +36,15 @@ class MainActivity : AppCompatActivity() {
 
         analyticsReportViewModel.reset()
 
-        analyticsReporter.report(ActivityOpenedReport(System.currentTimeMillis()))
+        analyticsReporter.send(ActivityOpenedReport(System.currentTimeMillis()))
 
         binding.fab.setOnClickListener {
 
-            analyticsReporter.report(AnalyticsReport.Forter.Location(Location("Victoria, BC")))
+            analyticsReporter.send(AnalyticsReport.Forter.Location(Location("Victoria, BC")))
 
-            analyticsReporter.report(DeepLink("some URI".toUri()))
+            analyticsReporter.send(DeepLink("some URI".toUri()))
 
-            analyticsReporter.report(
+            analyticsReporter.send(
                 RentCarButtonClickedReport(
                     isConfirmed = true,
                     nameString = "Audi",

@@ -12,12 +12,12 @@ import kotlin.reflect.full.memberProperties
 
 class KochavaService @Inject constructor() : AnalyticsService<Kochava> {
 
-    override fun send(event: Kochava) {
-        Timber.e( "send: $event")
+    override fun send(report: Kochava) {
+        Timber.e( "send: $report")
 
-        when (event) {
-            is Kochava.Standard -> Tracker.sendEvent(event.trackerEvent)
-            is Kochava.General -> sendCustomEvent(event)
+        when (report) {
+            is Kochava.Standard -> Tracker.sendEvent(report.trackerEvent)
+            is Kochava.General -> sendCustomEvent(report)
         }
     }
 

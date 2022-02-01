@@ -58,7 +58,7 @@ abstract class AnalyticsReportViewModel <T: GeneralReport> (
         GlobalScope.launch(Dispatchers.IO) {
             Timber.e( "sendAsync: $analyticsReport, date=${report.createdAt}")
 
-            reporter.report(analyticsReport)
+            reporter.send(analyticsReport)
         }
     }
 
