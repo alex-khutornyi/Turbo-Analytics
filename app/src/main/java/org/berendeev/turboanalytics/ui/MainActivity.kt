@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var analyticsStorage: AnalyticsStorage
 
-    private val analyticsReportViewModel: MainAnalyticsReportViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
