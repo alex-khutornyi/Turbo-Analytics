@@ -13,22 +13,20 @@ class AnalyticsStorage @Inject constructor() {
     private val reports = ConcurrentHashMap<Class<out GeneralReport>, GeneralReport>()
 
     /**
-     * @param report: required a class with an empty constructor
+     * @param clazz: required a class with an empty constructor
      */
-    fun create(report: Class<out GeneralReport>) {
+    fun create(clazz: Class<out GeneralReport>) {
         try {
-            if (reports.put(report, report.newInstance()) != null) {
-                throw IllegalStateException("Key `${report.canonicalName}` is already in Storage")
+            if (reports.put(clazz, clazz.newInstance()) != null) {
+                throw IllegalStateException("Key `${clazz.canonicalName}` is already in Storage")
             }
         } catch (e: Throwable) {
             error(e)
         }
     }
 
-    fun <T : GeneralReport>get(report: Class<out T>): T {
-        val generalReport = (reports[report])
-            ?: throw IllegalStateException("TODO: write a message") // TODO: throw Exception in Debug, but report to Crashlytics in Release
-        return generalReport as T
+    fun <T : GeneralReport> update(clazz: Class<out T>, updateAction: (T) -> Unit) {
+        updateAction(get(clazz))
     }
 
     fun update(report: GeneralReport) {
@@ -36,19 +34,31 @@ class AnalyticsStorage @Inject constructor() {
             // TODO: throw Exception in Debug, but report to Crashlytics in Release
             throw IllegalStateException("TODO: write a message")
         }
-
     }
 
-    fun delete(report: Class<out GeneralReport>) {
-        if (reports.remove(report) == null) {
+    fun delete(clazz: Class<out GeneralReport>) {
+        if (reports.remove(clazz) == null) {
             // TODO: throw Exception in Debug, but report to Crashlytics in Release
             throw IllegalStateException("TODO: write a message")
         }
     }
 
-    fun reset(report: Class<out GeneralReport>) {
-        delete(report)
-        create(report)
+    fun reset(clazz: Class<out GeneralReport>) {
+        delete(clazz)
+        create(clazz)
+    }
+
+    fun <T : GeneralReport> get(clazz: Class<out T>): T {
+        val generalReport = (reports[clazz])
+            ?: throw IllegalStateException("TODO: write a message") // TODO: throw Exception in Debug, but report to Crashlytics in Release
+        return generalReport as T
+    }
+
+    fun <T : GeneralReport> getAndDelete(clazz: Class<out T>): T {
+        val report = get(clazz)
+        delete(clazz)
+        
+        return report
     }
 
     private fun error(exception: Throwable) {

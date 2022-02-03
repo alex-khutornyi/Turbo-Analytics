@@ -42,13 +42,18 @@ class MainActivity : AppCompatActivity() {
 
             Timber.e("onCreate: OLD value: ${analyticsStorage.get(ActivityOpenedReport::class.java)}")
 
-            analyticsStorage.get(ActivityOpenedReport::class.java).apply {
-                openedTimes++
+            analyticsStorage.update(ActivityOpenedReport::class.java) { report ->
+                report.openedTimes++
             }
 
             Timber.e("onCreate: UPDATED value: ${analyticsStorage.get(ActivityOpenedReport::class.java)}")
 
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        analyticsReporter.send(analyticsStorage.get(ActivityOpenedReport::class.java))
     }
 
 }
