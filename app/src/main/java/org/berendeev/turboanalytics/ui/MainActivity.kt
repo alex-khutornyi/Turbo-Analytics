@@ -40,10 +40,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.fab.setOnClickListener {
 
-            var oldActivityOpenedReport = analyticsStorage.get(ActivityOpenedReport::class.java)
-            Timber.e("onCreate: OLD value: $oldActivityOpenedReport")
+            Timber.e("onCreate: OLD value: ${analyticsStorage.get(ActivityOpenedReport::class.java)}")
 
-            analyticsStorage.update(oldActivityOpenedReport.copy(openedTimes = oldActivityOpenedReport.openedTimes + 1))
+            analyticsStorage.get(ActivityOpenedReport::class.java).apply {
+                openedTimes++
+            }
+
             Timber.e("onCreate: UPDATED value: ${analyticsStorage.get(ActivityOpenedReport::class.java)}")
 
         }
@@ -59,8 +61,10 @@ class DeepLink(url: Uri) : AnalyticsReport.Kochava.Standard(
 @Name("Activity.Created")
 data class ActivityOpenedReport(
     @Property("TIMES")
-    val openedTimes: Long = 0,
-) : AnalyticsReport.Kochava.General()
+    var openedTimes: Long = 0,
+) : AnalyticsReport.Kochava.General() {
+    fun incrementOpenTimes(): ActivityOpenedReport = copy(openedTimes = openedTimes + 1)
+}
 
 @Name("Button.SignUp")
 data class RentCarButtonClickedReport(
