@@ -13,6 +13,7 @@ import java.time.LocalDateTime
 private const val MIN_MINUTES_BEFORE_SEND = 15L
 private const val MAX_HOURS_BEFORE_SEND = 24L
 
+@Deprecated("Should be removed later, since ViewModel scope is too small. Use AnalyticsStorage.kt instead")
 abstract class AnalyticsReportViewModel <T: GeneralReport> (
     private val reporter: AnalyticsReporter,
 ) : ViewModel() {

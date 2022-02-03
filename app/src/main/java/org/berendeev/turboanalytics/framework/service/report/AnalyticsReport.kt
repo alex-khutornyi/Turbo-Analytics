@@ -44,7 +44,7 @@ public sealed class AnalyticsReport {
          * Inherit from [General] to create a specific [GeneralReport].
          *
          */
-        public open class General(
+        public abstract class General(
             override var createdAt: LocalDateTime = LocalDateTime.now(),
         ) : Kochava(), GeneralReport
     }
@@ -71,7 +71,7 @@ public sealed class AnalyticsReport {
          * Inherit from [General] to create a specific [GeneralReport].
          *
          */
-        public open class General(
+        public abstract class General(
             override var createdAt: LocalDateTime = LocalDateTime.now(),
         ) : Iterable(), GeneralReport
     }
@@ -93,7 +93,7 @@ public sealed class AnalyticsReport {
          * Inherit from [General] to create a specific [GeneralReport].
          *
          */
-        public open class General(
+        public abstract class General(
             override var createdAt: LocalDateTime = LocalDateTime.now(),
         ) : Forter(), GeneralReport
 

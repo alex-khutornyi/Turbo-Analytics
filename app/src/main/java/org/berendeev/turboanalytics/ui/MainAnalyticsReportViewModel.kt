@@ -8,6 +8,7 @@ import org.berendeev.turboanalytics.framework.service.report.GeneralReport
 import org.berendeev.turboanalytics.ui.MainAnalyticsReportViewModel.FabButtonClicksReport
 import javax.inject.Inject
 
+@Deprecated("Should be removed later, since ViewModel scope is too small. Use AnalyticsStorage.kt instead")
 @HiltViewModel
 class MainAnalyticsReportViewModel @Inject constructor(
     analyticsReporter: AnalyticsReporter,
@@ -21,7 +22,7 @@ class MainAnalyticsReportViewModel @Inject constructor(
     data class FabButtonClicksReport(
 
         @GeneralReport.Property("ClicksCount")
-        val clickCount: Int,
+        val clickCount: Int = 0,
 
     ) : AnalyticsReport.Forter.General()
 }
